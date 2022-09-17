@@ -14,6 +14,8 @@ def hello():
 def get_prompt():
     prompt = request.json['prompt']
 
+    get_image_prompt(prompt)
+
 
 
 
