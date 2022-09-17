@@ -1,6 +1,9 @@
+import asyncio
+
 from flask import Flask, request
 
 from openai_gateway import get_image_prompt
+from server.banana_gateway import create_image
 
 app = Flask(__name__)
 
@@ -14,7 +17,7 @@ def hello():
 def get_prompt():
     prompt = request.json['prompt']
 
-    get_image_prompt(prompt)
+    create_image([get_image_prompt(prompt)])
 
 
 

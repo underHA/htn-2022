@@ -11,6 +11,10 @@ model_key = os.getenv('BANANA_MODEL_KEY')
 
 id = time.time()
 
+# if images folder doesn't exist, create it
+if not os.path.exists("./images"):
+    os.makedirs("./images")
+
 # mkdir with name 'start'
 # in python
 os.mkdir(f'./images/{id}')
@@ -52,10 +56,7 @@ def process(job):
     print("Time elapsed: ", end - start)
 
 
-# if images folder doesn't exist, create it
-if not os.path.exists("./images"):
-    os.makedirs("./images")
-
-
 def create_image(queue):
     Parallel(n_jobs=1)(delayed(process)(job) for job in queue)
+
+    return
