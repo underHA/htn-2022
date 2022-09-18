@@ -75,7 +75,7 @@ function App() {
     setMusic("https://www.youtube.com/watch?v=D7vrXDiKbEU")
 
     // // Request the video generation
-    // axios.post('localhost:3000/api/start_generation', {
+    // axios.post('localhost:3000/api/get_video', {
     //       text: entireText,
     //       style: styleString
     //   })

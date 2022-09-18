@@ -30,7 +30,7 @@ const Home = (props) => {
                     <BsFillCloudMoonFill size={32} className="header-icon"/>
                     <div>
                         <p className="header-big">Lucid.ai</p>
-                        <p className="header-small">Book to Movie</p>
+                        <p className="header-small">Your favourite text as a movie, directed by AI.</p>
                     </div>
                 </div>
 

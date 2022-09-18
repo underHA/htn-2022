@@ -38,13 +38,13 @@
 }
 
 .header-big {
-    font-size: 26px;
-    font-weight: 600;
+    font-size: 32px;
+    font-weight: 700;
     color: white;
 }
 
 .header-small {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 300;
     color: white;
 }
