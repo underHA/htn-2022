@@ -12,9 +12,9 @@
     left: 0;
     top: 0;
     object-fit: cover;
+    object-position: bottom;
     width: 100%;
-    height: calc(100% - 320px);
-    /* transform: rotate(-5deg); */
+    height: calc(100% - 100px);
     z-index: 0;
 }
 
@@ -110,7 +110,7 @@
 
 .question-heading {
     font-size: 12px;
-    font-weight: 400;
+    font-weight: 500;
     color: white;
     margin-bottom: 10px;
 }

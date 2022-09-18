@@ -60,8 +60,9 @@
 
 .historycard-container {
     width: 90%;
-    min-height: 170px;
+    max-height: 170px;
     display: flex;
+    flex-shrink: 0;
     flex-direction: column;
     border-radius: 10px;
     overflow: hidden;
@@ -86,6 +87,7 @@
 .historycard-image {
     width: 100%;
     object-fit: cover;
+    object-position: center;
 }
 
 .generating-card {
