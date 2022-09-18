@@ -1,0 +1,9 @@
+
+server/credentials.json
+server/files/
+server/colab_gateway.py
+
+server/sd/
+server/token.json
+server/banana_gateway.py
+.idea/vcs.xml

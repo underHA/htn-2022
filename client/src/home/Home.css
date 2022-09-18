@@ -1,0 +1,145 @@
+.home-container {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+    margin: 80px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.background-image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    object-fit: cover;
+    object-position: bottom;
+    width: 100%;
+    height: calc(100% - 100px);
+    z-index: 0;
+}
+
+.left-UI {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    z-index: 2;
+}
+
+.header-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.header-icon {
+    fill: #ffffff;
+    margin-right: 10px;
+}
+
+.header-big {
+    font-size: 32px;
+    font-weight: 700;
+    color: white;
+}
+
+.header-small {
+    font-size: 14px;
+    font-weight: 300;
+    color: white;
+}
+
+.story-input {
+    display: flex;
+    flex-grow: 1;
+    opacity: 0.9;
+
+    margin-top: 10px;
+    padding: 20px;
+    padding-top: 15px;
+
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+
+    border-color: rgba(0,0,0,0);
+    border-radius: 10px;
+    background-color: #F7F7F7;
+
+    resize: none;
+    overflow-y: auto;
+}
+.story-input::placeholder {
+    font-size: 16px;
+    color: #C0C0C0;
+}
+.story-input:focus {
+    outline: none !important;
+    border-color: rgba(0,0,0,0);
+    background-color: #F7F7F7;
+}
+.story-input:hover {
+    background-color: #EEEEEE;
+}
+.story-input:hover::-webkit-scrollbar-track {
+    background: rgba(241, 241, 241, 1);
+    opacity: 100%;
+    transition: 200ms;
+}
+.story-input:hover::-webkit-scrollbar-thumb {
+    background: rgba(220, 220, 220, 1);
+    opacity: 100%;
+    transition: 200ms;
+}
+
+/*---------------RIGHT UI--------------*/
+.right-UI {
+    width: 25%;
+    margin-left: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    z-index: 2;
+}
+
+.question-container {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.question-heading {
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.generate-container {
+    width: fit-content;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    padding: 5px;
+    padding-right: 25px;
+    padding-left: 25px;
+
+    background-color: rgba(256, 256, 256, 0.2);
+    border-radius: 10px;
+    transition: 200ms;
+    cursor: pointer;
+}
+.generate-container:hover {
+    background-color: rgba(256, 256, 256, 0.4);
+    transition: 200ms;
+}
+
+.generate-text {
+    font-size: 14px;
+    font-weight: 400;
+    color: white;
+    margin-left: 10px;
+}
