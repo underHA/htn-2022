@@ -1,6 +1,8 @@
+import os
+
 from pyyoutube import Api
 
-api = Api(api_key="AIzaSyBWqyeG-xeM6i2g3JVgsMerpcQzs24-ezc")
+api = Api(api_key=os.getenv("YOUTUBE_API_KEY"))
 
 
 async def find_video(word: str):
