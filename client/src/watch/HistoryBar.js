@@ -3,22 +3,22 @@ import { FaClosedCaptioning } from "react-icons/fa"
 import { siteContext } from "../Context"
 import "./HistoryBar.css"
 
-const HistoryBar = () => {
+const HistoryBar = ({ playing }) => {
     const { settings, setSettings, data } = useContext(siteContext)
     const [cardRenders, setCardRenders] = useState([])
 
     useEffect(() => {
-        const newCards = data.map(item => {
+        const newCards = data.map((item, index) => {
             return (
-                <div className="historycard-container">
+                <div className="historycard-container" style={{ backgroundColor: playing == index? "#f7c6a6":"#ffffff" }} >
                     <p className="historycard-text">{item.chunk}</p>
-                    <img className="historycard-image" alt="" src={item.thumbnail}/>
+                    <img className="historycard-image" alt="" src={item.thumbnail[1]}/>
                 </div>
             )
         })
 
         setCardRenders(newCards)
-    }, [data])
+    }, [data, playing])
 
     return (
         <div className="history-container">

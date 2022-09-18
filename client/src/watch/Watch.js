@@ -68,7 +68,7 @@ const Watch = ({ }) => {
 
     return (
         <div className="watch-container">
-            <HistoryBar />
+            <HistoryBar playing={playing}/>
 
             <div className="content-container">
                 <div className="fullscreen-button">
