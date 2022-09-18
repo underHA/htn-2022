@@ -71,13 +71,14 @@ def get_image_prompt(prompt: str, style: str):
     return image_prompt_types[style].format(insert_prompt=send_to_openai_completion(_make_image_prompt(prompt)))
 
 
-forbidden_words = {'there', 'well', 'defined', 'tone', 'ain', 'all', 'and', 'and', 'any', 'are', 'are', 'but', 'can', 'can', 'did', 'did', 'don', 'few', 'for', 'had', 'had', 'has', 'has', 'her', 'him', 'his', 'how', 'isn', 'its', 'may', 'nor', 'not', 'now', 'our', 'own', 'she', 'the', 'the', 'too', 'was', 'was', 'who', 'why', 'won', 'you', 'aren', 'been', 'been', 'both', 'dare', 'didn', 'does', 'does', 'each', 'else', 'hadn', 'hasn', 'have', 'have', 'hers', 'just', 'more', 'most', 'much', 'must', 'need', 'only', 'ours', 'same', 'shan', 'some', 'such', 'than', 'that', 'that', 'them', 'then', 'they', 'this', 'this', 'very', 'wasn', 'were', 'were', 'what', 'when', 'whom', 'will', 'will', 'with', 'your', 'being', 'being', 'could', 'doesn', 'doing', 'doing', 'haven', 'might', 'mustn', 'needn', 'other', 'ought', 'shall', 'their', 'these', 'these', 'those', 'those', 'until', 'weren', 'where', 'which', 'while', 'would', 'yours', 'couldn', 'having', 'having', 'itself', 'mightn', 'myself', 'should', 'should', 'should', 'theirs', 'wouldn', 'because', 'herself', 'himself', 'shouldn', 'similar', 'yourself', 'ourselves', 'themselves', 'yourselves'}
+forbidden_words = {'there', 'well', 'defined', 'tone', 'ain', 'all', 'and', 'and', 'any', 'are', 'are', 'but', 'can', 'can', 'did', 'did', 'don', 'few', 'for', 'had', 'had', 'has', 'has', 'her', 'him', 'his', 'how', 'isn', 'its', 'may', 'nor', 'not', 'now', 'our', 'own', 'she', 'the', 'the', 'too', 'was', 'was', 'who', 'why', 'won', 'you', 'aren', 'been', 'been', 'both', 'dare', 'didn', 'does', 'does', 'each', 'else', 'hadn', 'hasn', 'have', 'have', 'hers', 'just', 'more', 'most', 'much', 'must', 'need', 'only', 'ours', 'same', 'shan', 'some', 'such', 'than', 'that',
+                   'that', 'them', 'then', 'they', 'this', 'this', 'very', 'wasn', 'were', 'were', 'what', 'when', 'whom', 'will', 'will', 'with', 'your', 'being', 'being', 'could', 'doesn', 'doing', 'doing', 'haven', 'might', 'mustn', 'needn', 'other', 'ought', 'shall', 'their', 'these', 'these', 'those', 'those', 'until', 'weren', 'where', 'which', 'while', 'would', 'yours', 'couldn', 'having', 'having', 'itself', 'mightn', 'myself', 'should', 'should', 'should', 'theirs', 'wouldn', 'because', 'herself', 'himself', 'shouldn', 'similar', 'yourself', 'ourselves', 'themselves', 'yourselves'}
 
 
 def get_audio_prompt(prompt: str):
     result = send_to_openai_completion(_make_audio_prompt(prompt), 10)
-    resultArray = result.strip().replace('"', ' ').replace("'", ' ').replace(',', ' ').replace('.', ' ').replace('!', ' ').replace('?', ' ').replace(';', ' ').replace('-', ' ').replace('_', ' ').replace(':', ' ').replace(';', ' ').split()
-
+    resultArray = result.strip().replace('"', ' ').replace("'", ' ').replace(',', ' ').replace('.', ' ').replace(
+        '!', ' ').replace('?', ' ').replace(';', ' ').replace('-', ' ').replace('_', ' ').replace(':', ' ').replace(';', ' ').split()
 
     for i, word in enumerate(resultArray):
         if word.lower() in forbidden_words or len(word) < 3 or len(word) > 8 or i == len(resultArray) - 1 or i > 3:
@@ -85,6 +86,11 @@ def get_audio_prompt(prompt: str):
         return word.lower()
 
     return get_audio_prompt(prompt)
+
+
+def get_summary(prompt):
+    params = "summarize the following text in one sentence: " + prompt
+    return send_to_openai_completion(params)
 
 
 if __name__ == '__main__':
