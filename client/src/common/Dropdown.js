@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { GoTriangleDown } from "react-icons/go"
 import "./Dropdown.css"
 
-const Dropdown = ({options}) => {
+const Dropdown = ({ options, setStyle }) => {
     const [value, setValue] = useState(); // Stores the index of the item in options
     const [dropVisible, setDropVisible] = useState(false);
     const [dropRender, setDropRender] = useState();
@@ -22,6 +22,10 @@ const Dropdown = ({options}) => {
             </div>
         )
     }
+
+    useEffect(() => {
+        setStyle(options[value])
+    }, [value])
 
     useEffect(() => {
         if (dropVisible) {

@@ -41,7 +41,7 @@ code {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgba(188, 188, 188, 0);
+  background: rgba(100, 100, 100, 1);
   border-radius: 5px;
   transition: 200ms;
 }

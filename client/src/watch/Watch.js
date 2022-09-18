@@ -1,41 +1,88 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import "./Watch.css"
 import { siteContext } from "../Context";
 import HistoryBar from "./HistoryBar";
 import { BsFullscreen } from "react-icons/bs";
+import readme from "./readme.mp3"
 
-const Watch = ({ historyCards, caption }) => {
-    const { settings, setSettings } = useContext(siteContext)
+const Watch = ({ }) => {
+    const { settings, data, music } = useContext(siteContext)
+    const [playing, setPlaying] = useState(0)
+    const [currVid, setCurrVid] = useState();
+    const [currAud, setCurrAud] = useState();
+    const [musicVid, setMusicVid] = useState();
     const videoRef = useRef()
+    const audioRef = useRef()
+    const musicRef = useRef()
+
+    // useEffect(() => {
+    //     if (videoRef.current) {
+    //         const video = videoRef.current
+    //         video.defaultPlaybackRate = 0.5;
+    //         video.play();
+    //         video.playbackRate = 0.5;
+    //     }
+    // }, [])
+
+    const handleAudioEnd = () => {
+        setPlaying(Math.min(playing + 1, Math.max(0, data.length - 1)))
+    }
+
+    useEffect(() => {
+        console.log(data[playing].video, data[playing].audio)
+
+        setCurrVid(
+            <video key={data[playing].video} ref={videoRef} style={{ display: "flex", flexGrow: 1 }} loop>
+                <source src={data[playing].video} type="video/mp4"/>
+            </video>
+        )
+
+        setCurrAud(
+            <audio key={data[playing].audio} ref={audioRef} style={{ display: "none" }} onEnded={handleAudioEnd}>
+                <source src={data[playing].audio} type="audio/wav"></source>
+            </audio>
+        )
+
+    }, [playing])
 
     useEffect(() => {
         if (videoRef.current) {
-            const video = videoRef.current
-            /* play video twice as fast */
-            video.defaultPlaybackRate = 0.5;
-            video.play();
-    
-            // /* now play three times as fast just for the heck of it */
-            video.playbackRate = 3.0;
+            videoRef.current.play();
         }
-    })
+    }, [currVid])
+
+    useEffect(() => {
+        if (audioRef.current) {
+            audioRef.current.play();
+        }
+    }, [currAud])
+
+    useEffect(() => {
+        setMusicVid(
+            <audio key={data[playing].audio} ref={musicRef} volume={0.5} style={{ display: "none" }} onEnded={handleAudioEnd} autoPlay loop>
+                <source src={readme} type="audio/wav"></source>
+            </audio>
+            // <iframe width="560" height="315" src={`${music}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        )
+    }, [music])
 
     return (
         <div className="watch-container">
-            <HistoryBar historyCards={historyCards}/>
+            <HistoryBar />
 
             <div className="content-container">
                 <div className="fullscreen-button">
                     <BsFullscreen size={24} fill={"#FFFFFF"} />
                 </div>
-                <video ref={videoRef} style={{ display: "flex", flexGrow: 1 }} controls loop>
-                    <source src="https://htn-bucket.s3.us-east-2.amazonaws.com/20220917022903%20(1).mp4" type="video/mp4"/>
-                    {/* <source src="movie.ogg" type="video/ogg"/> */}
-                </video>
-                {/* <img className="video" src={"https://external-preview.redd.it/6Ijx9IWBYX_bgmsHoXWUw5ycowCKkuqcULHCOynXGWM.jpg?auto=webp&s=4bdd6f097e1592d7033eee41d88dbebb6acaad2a"} /> */}
-                
-                {settings.closedCaptioning? (
-                    <p className="closed-captioning">{caption}</p>
+
+                <div id="player"></div>
+
+                {musicVid}
+                {currVid}
+                {currAud}
+
+                {settings.closedCaptioning && data[playing].chunk !== ""? (
+                    <p className="closed-captioning">{data[playing].chunk}</p>
                 ) : <></>}
             </div>
         </div>
