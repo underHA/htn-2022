@@ -1,0 +1,11 @@
+.watch-container {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+}
+
+.content-container {
+    display: flex;
+    flex-grow: 1;
+    background-color: white;
+}

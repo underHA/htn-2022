@@ -1,24 +1,19 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import Home from "./home/Home.js"
+import Watch from "./watch/Watch.js"
+import { siteContext } from "./Context.js"
 
 function App() {
+  const [page, setPage] = useState("home")
+  const [settings, setSettings] = useState({ closedCaptioning: true })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <siteContext.Provider value={{page, setPage, settings, setSettings}}>
+      <div className="App">
+        {page == "loading"? <></> : (page == "home"? <Home />:<Watch />)}
+      </div>
+    </siteContext.Provider>
   );
 }
 
