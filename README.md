@@ -1,5 +1,10 @@
 # Lucid.ai
 @ Hack the North 2022 - Finalist
+
+[Demo Video](https://www.youtube.com/watch?v=9e8J4VNFXOM)
+
+[Devpost](https://devpost.com/software/lucid-ai-95nerk)
+
 ## What it does
 Paste in a text and it will identify the key scenes before turning it into a narrated movie. Favourite book, historical battle, or rant about work. Anything and everything, if you can read it, Lucid.ai can dream it.
 
